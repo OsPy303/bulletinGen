@@ -7,7 +7,7 @@ import os
 import fnmatch
 
 class ExcelToDataFrame:
-	def __init__(self, fileName, coefficient):
+	def __init__(self, fileName, coefficient=21):
 		# <fileName> : est un dossier ou liste des fichier excel
 		self.fileName = fileName
 		self.noteDataFrame = None
@@ -29,6 +29,7 @@ class ExcelToDataFrame:
 			excel separé par matiere
 		"""
 		listFile = list()
+		os.chdir(self.fileName)
 		with os.scandir(self.fileName) as dirContent:
 			for content in dirContent:
 				 if content.is_file() and fnmatch.fnmatch((fName := content.name), '*.xlsx'):
