@@ -68,9 +68,12 @@ class ExcelToDataFrame:
 		self.noteDataFrame.sort_values(by=['Moyenne'], ascending=False, inplace=True)
 
 	def getOneRow(self, index):
-		#Retourne une ligne dans le dataframe a pertir du numero d'index donnee 
+		#Retourne une ligne dans le dataframe a pertir du numero d'index donnee
+		row = self.noteDataFrame.iloc[index]
+		num = row.iloc[0]
+		nom = row.iloc[1]
 		
-		return self.noteDataFrame.iloc[index]
+		return row, num, nom
 
 	def getComlumn(self):
 		return self.column

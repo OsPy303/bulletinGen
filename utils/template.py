@@ -22,13 +22,15 @@ class DataFrameToHtml:
 
 	def setHtml(self):
 		for index in range(len(self.data.getIndex())):
-			self.htmlString += "<div>\n\
+			row, num, nom = self.data.getOneRow(index)
+			self.htmlString += f"<div>\n\
+								<p>Nom et Prenom: {nom}<br/>\n\
+								Numéro: {num}</p>\n\
 								<table>\n\
 								<tr>\n\
 								<th>Discipline</th>\n\
 								<th>Notes</th>\n\
 								</tr>\n"
-			row = self.data.getOneRow(index)
 
 			for elt in row.index[2:]:
 				self.htmlString += f"<tr>\n\
