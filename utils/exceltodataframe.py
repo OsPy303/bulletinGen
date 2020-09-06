@@ -81,3 +81,6 @@ class ExcelToDataFrame:
 
 	def getIndex(self):
 		return self.index
+
+	def getDataFrame(self):
+		return self.noteDataFrame
