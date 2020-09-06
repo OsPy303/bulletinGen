@@ -92,6 +92,7 @@ class EntriesContainer(Gtk.Box):
 			dialog.destroy()
 			listView = ListView(self.calculatedData)
 			fen = Gtk.Window(title='Liste', border_width=8)
+			fen.set_default_size(1000, 600)
 			fen.connect('delete-event', Gtk.main_quit)
 			fen.add(listView)
 			fen.show_all()
