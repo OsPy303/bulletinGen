@@ -6,7 +6,7 @@ import pandas as pd
 import os
 import fnmatch
 
-class ExcelToDict:
+class ExcelToDataFrame:
 	def __init__(self, fileName, coefficient):
 		# <fileName> : est un dossier ou liste des fichier excel
 		self.fileName = fileName

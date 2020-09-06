@@ -1,10 +1,10 @@
-from utils.template import CreateHtml
-from utils.exceltodict import ExcelToDict
+from utils.template import DataFrameToHtml
+from utils.exceltodataframe import ExcelToDataFrame
 
-data = ExcelToDict("note_premiere_a1", 21)
+data = ExcelToDataFrame("note_premiere_a1", 21)
 #print(data.getFilesName())
 #data.setDataframe()
-html = CreateHtml(data)
+html = DataFrameToHtml(data)
 html.setHtml()
 html.saveHtml()
 html.savePdf()

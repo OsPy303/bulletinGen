@@ -1,11 +1,11 @@
 """
-	Generer une fichier HTML à partir d'un ExcelToDict
+	Generer une fichier HTML à partir d'un ExcelToDataFrame
 """
 import pdfkit
-from utils.exceltodict import ExcelToDict
+from utils.exceltodataframe import ExcelToDataFrame
 import pandas as pd
 
-class CreateHtml:
+class DataFrameToHtml:
 	def __init__(self, data):
 		self.data = data
 		self.htmlString = "<!DOCTYPE html>\n\
