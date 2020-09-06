@@ -2,6 +2,8 @@
 	Generer une fichier HTML à partir d'un dictionnaire de dictionnaire
 """
 import pdfkit
+from utils.exceltodict import ExcelToDict
+import pandas as pd
 
 class CreateHtml:
 	def __init__(self, data):
@@ -35,6 +37,24 @@ class CreateHtml:
 		self.htmlString += "</ol>\n"
 		self.htmlString += "</body>\n\
 							</html>"
+
+	def setHtml1(self):
+		for index in range(len(self.data.getIndex())):
+			self.htmlString += "<table>\n\
+								<tr>\n\
+								<th>Discipline</th>\n\
+								<th>Notes</th>\n\
+								</tr>\n"
+			row = self.data.getOneRow(index)
+
+			for elt in row.index[2:]:
+				self.htmlString += f"<tr>\n\
+									<td>{elt}</td>\n\
+									<td>{row.loc[elt]}</td>\n\
+									</tr>\n"
+			self.htmlString += "</table>\n"
+
+
 
 	def saveHtml(self):
 		"""

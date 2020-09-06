@@ -1,9 +1,9 @@
 from utils.template import CreateHtml
 from utils.exceltodict import ExcelToDict
 
-data = ExcelToDict("terminale_D.xlsx")
-dic = data.getAllNoteDico()
-html = CreateHtml(dic)
-html.setHtml()
+data = ExcelToDict("note_premiere_a1", 21, True)
+#print(data.getFilesName())
+#data.setDataframe()
+html = CreateHtml(data)
+html.setHtml1()
 html.saveHtml()
-html.savePdf()
