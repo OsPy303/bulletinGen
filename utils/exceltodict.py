@@ -1,112 +1,25 @@
 """
-* Ce module lit un fichier excel contenant les notes
-* et totales des notes des eleves est genere un  
-* dictionaire de dictionnaire de forme:
-* {
-	0: {
-		  'num': 2,
-		  'nom': 'ANDRIANARINIVO Joyce Ckadly',
-		  'malagasy': 30.0,
-		  'histo_geo': 21.5,
-		  'anglais': 1.0,
-		  'français': 18.0,
-		  'physique': 44.0,
-		  'mathématiques': 54.0,
-		  'philosophie': 18.0,
-		  'SVT': 75.0,
-		  'total': 260.5
-		},
- 	1: {
- 		  'num': 2,
-		  'nom': 'ANDRIANARINIVO Joyce Ckadly',
-		  'malagasy': 30.0,
-		  'histo_geo': 21.5,
-		  'anglais': 1.0,
-		  'français': 18.0,
-		  'physique': 44.0,
-		  'mathématiques': 54.0,
-		  'philosophie': 18.0,
-		  'SVT': 75.0,
-		  'total': 260.5
-		},
- 	2: {
- 		  'num': 2,
-		  'nom': 'ANDRIANARINIVO Joyce Ckadly',
-		  'malagasy': 30.0,
-		  'histo_geo': 21.5,
-		  'anglais': 1.0,
-		  'français': 18.0,
-		  'physique': 44.0,
-		  'mathématiques': 54.0,
-		  'philosophie': 18.0,
-		  'SVT': 75.0,
-		  'total': 260.5
-		}
-  }
+* Lire les fichiers excels dans un dossier en supposant que
+* Ce sont des notes des eleve d'une classe separé par matiere
 """
 import pandas as pd
 import os
 import fnmatch
 
 class ExcelToDict:
-	def __init__(self, fileName, coefficient, isDirectory=False):
-		# <fileName> : le nom ou le chemain du fichier excel
+	def __init__(self, fileName, coefficient):
+		# <fileName> : est un dossier ou liste des fichier excel
 		self.fileName = fileName
-		self.isDirectory = isDirectory
 		self.noteDataFrame = None
 		self.coefficient = coefficient
-
-		if self.isDirectory:
-			self.listFile = self.getFilesName()
-			self.setDataframe()
-
-		else:
-			# Lire le fichier excel avec pandas
-			self.noteDataFrame = pd.read_excel(self.fileName)
+		# Liste des fichier dans le dossier
+		self.listFile = self.getFilesName() if self.fileName is not list() else self.fileName
+		self.setDataframe()
 		# Stocker les colonnes
 		self.column = self.noteDataFrame.columns
 		# lire les index
 		self.index = self.noteDataFrame.index
 		print(self.noteDataFrame)
-
-
-	def readNoteSeries(self, pdSeries):
-		"""
-		Lire le note d'une eleve re renvoie un dictionnaire
-		comme: 
-		{
-		  'num': 2,
-		  'nom': 'ANDRIANARINIVO Joyce Ckadly',
-		  'malagasy': 30.0,
-		  'histo_geo': 21.5,
-		  'anglais': 1.0,
-		  'français': 18.0,
-		  'physique': 44.0,
-		  'mathématiques': 54.0,
-		  'philosophie': 18.0,
-		  'SVT': 75.0,
-		  'total': 260.5
-		}
-		"""
-		noteDico = dict()
-		for col in self.column:
-			noteDico[col] = pdSeries[col]
-
-		return noteDico
-
-	def getAllNoteDico(self):
-		"""
-		Lire la totalite du dataframe et renvoie la dictionnaire de 
-		dictionnaire
-		"""
-		allNote = dict()
-		# parcourir le dataframe
-		for i in self.index:
-			temp = self.noteDataFrame.iloc[i]
-			noteTemp = self.readNoteSeries(temp)
-			allNote[i] = noteTemp
-
-		return allNote
 
 	def getFilesName(self):
 		"""

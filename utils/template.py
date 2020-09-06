@@ -1,5 +1,5 @@
 """
-	Generer une fichier HTML à partir d'un dictionnaire de dictionnaire
+	Generer une fichier HTML à partir d'un ExcelToDict
 """
 import pdfkit
 from utils.exceltodict import ExcelToDict
@@ -13,34 +13,17 @@ class CreateHtml:
 							<head>\n\
 								<title></title>\n\
 								<meta charset=\"utf-8\">\n\
+								<style>\
+								div, table, th, td{\n\
+								 border: 1px solid black}\n\
+								</style>\
 							</head>\n\
 							<body>"
 
 	def setHtml(self):
-		"""
-			Cree dynamiquement un synthaxe html à partire des données 
-			du dictionnaire
-		"""
-		self.htmlString += "<ol>\n"
-		for key in self.data.keys():
-			tempDict = self.data[key]
-			self.htmlString += "<li>\n"
-			self.htmlString += "<ul>\n"
-
-			for notes in tempDict.keys():
-				print(tempDict[notes])
-				self.htmlString += f"<li>{str(notes)} --> {str(tempDict[notes])}</li>\n"
-
-			self.htmlString += "</ul>\n"
-			self.htmlString += "</li>"
-
-		self.htmlString += "</ol>\n"
-		self.htmlString += "</body>\n\
-							</html>"
-
-	def setHtml1(self):
 		for index in range(len(self.data.getIndex())):
-			self.htmlString += "<table>\n\
+			self.htmlString += "<div>\n\
+								<table>\n\
 								<tr>\n\
 								<th>Discipline</th>\n\
 								<th>Notes</th>\n\
@@ -52,7 +35,7 @@ class CreateHtml:
 									<td>{elt}</td>\n\
 									<td>{row.loc[elt]}</td>\n\
 									</tr>\n"
-			self.htmlString += "</table>\n"
+			self.htmlString += "</table>\n</div>\n"
 
 
 
