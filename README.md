@@ -8,6 +8,7 @@ fichier pdf à partir d'un fichier html generé par le programme.
 requirement:
 Pandas
 pdfkit
+GTK 3.0
 
 dependece:
 wkhtmltopdf
